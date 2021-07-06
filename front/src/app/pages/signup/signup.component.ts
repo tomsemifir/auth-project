@@ -30,6 +30,9 @@ export class SignupComponent implements OnInit {
     }
   
   ngOnInit(): void {
+    if(this.authenticationService.currentUserValue) {
+      this.router.navigateByUrl("/home");
+    }
   }
 
   /**
