@@ -3,8 +3,12 @@
       <span class="mb-0 h1">Navbar</span>
       <!-- Bouton connexion à afficher si l'utilisateur n'est pas connecté -->
       <span class="mb-0" *ngIf="!authenticationService.isConnect">
-          <a class="btn btn-light" routerLink="/login">Connexion</a>
+          <a class="btn btn-light" routerLink="/login">Se connecter</a>
       </span>
+      <!-- Bouton connexion à afficher si l'utilisateur n'est pas connecté -->
+      <span class="mb-0" *ngIf="!authenticationService.isConnect">
+        <a class="btn btn-success" routerLink="/signup">S'inscrire</a>
+    </span>
       <!-- Bouton connexion à afficher si l'utilisateur est connecté -->
       <span class="mb-0" *ngIf="authenticationService.isConnect">
         <a class="btn btn-danger" (click)="logout()" >Déconnexion</a>

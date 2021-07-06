@@ -1,0 +1,27 @@
+<form [formGroup]="userForm" (ngSubmit)="signup()">
+    <label for="firstName">Nom :</label>
+    <input type="text" name="firstName" formControlName="firstName">
+
+    <label for="lastName">Prénom :</label>
+    <input type="text" name="lastName" formControlName="lastName">
+
+    <label for="age">Age :</label>
+    <input type="number" name="age" formControlName="age">
+
+    <label for="username">Pseudo :</label>
+    <input type="text" name="username" formControlName="username">
+
+    <!-- Div à n'afficher que si erreur -->
+    <div class="alert alert-danger" *ngIf="showAlert">
+        <p>Un utilisateur est déjà enregistré avec cette adresse email.</p>
+    </div>
+
+    <label for="email">Email :</label>
+    <input type="email" name="email" formControlName="email">
+
+    <label for="password">Mot de passe :</label>
+    <input type="password" name="password" formControlName="password">
+
+    <!-- Activer le bouton que si le formulaire est valide -->
+    <button class="btn btn-success" [disabled]="!userForm.valid">S'inscrire</button>
+</form>

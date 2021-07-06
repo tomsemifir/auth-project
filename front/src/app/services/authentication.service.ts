@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,21 @@ export class AuthenticationService {
   login(email: string, password: string) {
     // Envoie une méthode HTTP post au BACK
     return this.http.post<any>(`${environment.apiUrl}/auth/signin`, { email, password }).pipe(map(user => {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      this.currentUserSubject.next(user);
+      this.isConnect = true;
+      return user;
+    }));
+  }
+
+  /**
+   * Inscription utilisateur
+   * @param user
+   * @returns 
+   */
+   signup(user : User) {
+    // Envoie une méthode HTTP post au BACK
+    return this.http.post<any>(`${environment.apiUrl}/auth/signup`, user).pipe(map(user => {
       localStorage.setItem('currentUser', JSON.stringify(user));
       this.currentUserSubject.next(user);
       this.isConnect = true;
